@@ -8,9 +8,7 @@ EXCEL_PATH = "numbers.xlsx"
 PHONE_COLUMN = "Phone"
 DEFAULT_COUNTRY_CODE = "91"
 
-CAPTION = """Ready to Sell Online?
-📞 Call us: 9149273593
-🌐 Visit: sprl.me/visit"""
+CAPTION = """hello"""
 
 USER_DATA_DIR = "wa_profile"
 
@@ -23,7 +21,7 @@ WAIT_BETWEEN_NUMBERS_SEC = 1.0
 # ==========================
 
 def is_no_results_screen(page) -> bool:
-    # New WA message is like: "No results found for '3567564356'"
+
     return page.locator("text=No results found for").count() > 0
 
 
@@ -32,7 +30,7 @@ def go_home(page) -> None:
     Bring WhatsApp back to the main UI so the next iteration can click New chat.
     This fixes getting stuck on the 'New chat' / 'No results found' screen.
     """
-    # Try Esc a couple of times (closes search/new-chat panes)
+
     try:
         page.keyboard.press("Escape")
         time.sleep(0.3)
@@ -58,12 +56,11 @@ def go_home(page) -> None:
         except:
             pass
 
-    # Ensure chat list is visible again (best-effort)
     try:
         page.wait_for_selector("div[aria-label='Chat list'], div[role='grid'][aria-label='Chat list']",
                                timeout=10_000)
     except:
-        # last resort: reload WhatsApp Web (keeps session due to persistent profile)
+
         try:
             page.goto("https://web.whatsapp.com")
             wait_for_whatsapp_ready(page, timeout_ms=60_000)
@@ -75,7 +72,6 @@ def extract_and_clean_phone(value) -> str | None:
         return None
     s = str(value).strip()
 
-    # pull digit runs
     runs = re.findall(r"\d{6,}", s)
     if not runs:
         return None
@@ -459,3 +455,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
