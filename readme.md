@@ -30,13 +30,13 @@ This project is designed for **business outreach, internal communication, and au
 ---
 
 ## 📁 Project Structure
-
-project/
-├── script.py # Main automation script
-├── numbers.xlsx # Input Excel file
-├── numbers_result.xlsx # Output result file (auto-generated)
-└── wa_profile/ # Persistent WhatsApp session (auto-created)
-
+```
+  project/
+  ├── script.py # Main automation script
+  ├── numbers.xlsx # Input Excel file
+  ├── numbers_result.xlsx # Output result file (auto-generated)
+  └── wa_profile/ # Persistent WhatsApp session (auto-created)
+```
 
 > ⚠️ Do NOT delete `wa_profile` after first login.
 
